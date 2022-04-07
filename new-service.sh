@@ -97,6 +97,13 @@ else
     fi
 fi
 
+if [ ! -x "$(command -v sg)" ]; then
+    echo ""
+    echo "Installing seng generator..."
+    npm install -g seng-generator
+    echo ""
+fi
+
 echo ""
 echo "#####"
 echo ""
@@ -109,6 +116,11 @@ if [ $awsKeyIssue = "true" ]; then
     echo ""
     echo "P.S. You will have to setup service .env.dev yourself"
 fi
+echo ""
+echo ""
+echo "### NOTE use seng generator wizard in service folder to setup Stack/Function templates ###"
+echo ""
+echo ""
 if [ $enableLocalDB = "true" ]; then
     echo ""
     echo "Local DynamoDB plugin has been installed and enabled, see service README for more info:"
