@@ -82,7 +82,18 @@ else
         echo "#####"
         echo ""
     else
+
+        echo ""
+        echo "Running NPM Install..."
+        echo ""
         npm install
+
+        if [ $enable_local_db = "y" ]; then
+            echo ""
+            echo "Installing dynamodb local plugin..."
+            echo ""
+            sls dynamodb install
+        fi
     fi
 fi
 
@@ -100,8 +111,12 @@ if [ $awsKeyIssue = "true" ]; then
 fi
 if [ $enableLocalDB = "true" ]; then
     echo ""
-    echo "Local DynamoDB has been enabled, see service README for more info"
+    echo "Local DynamoDB plugin has been installed and enabled, see service README for more info:"
     echo ""
+    echo "Run serverless command 'dynamodb start' to start local db"
+    echo "Add '--migrate' param to start and import local data"
+    echo ""
+    echo "Setup local DB data sources in stack/db/dynamodb-local/custom-variables.yml"
 fi
 echo ""
 echo "#####"
